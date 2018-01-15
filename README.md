@@ -23,7 +23,7 @@ test('start a server and connect to it', function (t) {
     // this is run inside a mininet container on h1
     var net = require('net')
 
-    h1.on('listening', function (ip) {
+    h2.on('listening', function (ip) {
       var socket = net.connect(10000, ip)
       var bufs = []
 
@@ -46,7 +46,7 @@ test('start a server and connect to it', function (t) {
     })
 
     server.listen(10000, function () {
-      h1.emit('listening', global.ip)
+      h2.emit('listening', global.ip)
     })
   })
 })
