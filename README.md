@@ -52,6 +52,31 @@ test('start a server and connect to it', function (t) {
 })
 ```
 
+## API
+
+#### `var h = test.createHost()`
+
+Same as [mininet.createHost()](https://github.com/mafintosh/mininet#var-host--mncreatehost)
+
+#### `var s = test.createHost()`
+
+Same as [mininet.createSwitch()](https://github.com/mafintosh/mininet#var-host--mncreateswitch)
+
+#### `test.mininet`
+
+The underlying [mininet](https://github.com/mafintosh/mininet) instance.
+
+#### `test(name, runner)`
+
+Start a test. `name` is a description of your test and `runner` should be a function.
+When the test is run, `runner` is ran with the argument `t` which is a [tape](https://github.com/substack/tape) test instance.
+
+#### `t.run(host, source)`
+
+In addition to all the other tape test methods, `t.run` will run a source function inside a mininet host.
+The host will have access to the test object through the `t` variable, and a set of shared event emitters `h1`, `h2`, ...
+If you emit an event on any of those event emitters it will be emitted across all mininet hosts currently running.
+
 ## License
 
 MIT
