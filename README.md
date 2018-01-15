@@ -58,7 +58,7 @@ test('start a server and connect to it', function (t) {
 
 Same as [mininet.createHost()](https://github.com/mafintosh/mininet#var-host--mncreatehost)
 
-#### `var s = test.createHost()`
+#### `var s = test.createSwitch()`
 
 Same as [mininet.createSwitch()](https://github.com/mafintosh/mininet#var-host--mncreateswitch)
 
