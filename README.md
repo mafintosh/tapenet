@@ -1,6 +1,6 @@
 # tapenet
 
-Test runner for distributed systems based on mininet and tape
+Test runner for distributed systems based on [mininet](https://github.com/mafintosh/mininet) and [tape](https://github.com/substack/tape)
 
 ```
 npm install tapenet
