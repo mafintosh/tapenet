@@ -1,6 +1,10 @@
 var mn = require('mininet')({stdio: 'inherit', prefixStdio: true})
 var tape = require('tape')
+var path = require('path')
+
 var pending = []
+var parentFilename = (module.parent && module.parent.filename) || '.'
+var parentDirname = path.dirname(parentFilename)
 
 tape.onFinish(function () {
   mn.stop()
@@ -61,6 +65,8 @@ function test (name, fn) {
         var target = {}
         var ip = '${host.ip}'
         var mac = '${host.mac}'
+        var __dirname = '${parentDirname}'
+        var __filename = '${parentFilename}'
 
         global.t = new Proxy({}, {
           get: function (target, name) {
