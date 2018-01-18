@@ -87,6 +87,17 @@ In addition to all the other tape test methods, `t.run` will run a source functi
 The host will have access to the test object through the `t` variable, and a set of shared event emitters `h1`, `h2`, ...
 If you emit an event on any of those event emitters it will be emitted across all mininet hosts currently running.
 
+## Topologies
+
+tapenet comes bundles with some useful topologies.
+
+``` js
+// same as h1.link(s1), h2.link(s1)
+var {h1, h2} = require('tapenet/topologies').basic()
+```
+
+For more see [topologies/](https://github.com/mafintosh/tapenet/tree/master/topologies)
+
 ## License
 
 MIT
