@@ -52,6 +52,16 @@ test('start a server and connect to it', function (t) {
 })
 ```
 
+## CLI test runner
+
+Similar to tape, you can either run a test by simply running a test file with node
+or you can use the cli runner
+
+``` sh
+npm install -g tapenet
+tapenet *.net.js
+```
+
 ## API
 
 #### `var h = test.createHost()`

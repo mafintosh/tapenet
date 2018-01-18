@@ -1,4 +1,4 @@
-var mn = require('mininet')({stdio: 'inherit', prefixStdio: true})
+var mn = require('mininet')({stdio: 'inherit', prefixStdio: true, defer: true})
 var tape = require('tape')
 var path = require('path')
 
@@ -6,8 +6,10 @@ var pending = []
 var parentFilename = (module.parent && module.parent.filename) || '.'
 var parentDirname = path.dirname(parentFilename)
 
+delete require.cache[__filename]
+
 tape.onFinish(function () {
-  mn.stop()
+  if (mn.started) mn.stop()
 })
 
 test.mininet = mn
@@ -37,10 +39,23 @@ function test (name, fn) {
 
 function runner (t, fn) {
   if (!mn.started) {
-    mn.on('start', ready)
-    mn.start()
+    var old = global.__mininet__
+
+    if (old && old.started && !old.stopped) {
+      old.on('stop', start)
+      old.stop()
+    } else {
+      start()
+    }
+
   } else {
     ready()
+  }
+
+  function start () {
+    global.__mininet__ = mn
+    mn.on('start', ready)
+    mn.start()
   }
 
   function ready () {

@@ -4,7 +4,7 @@
   "description": "Test runner for distributed systems based on mininet and tape",
   "main": "index.js",
   "dependencies": {
-    "mininet": "^2.5.0",
+    "mininet": "^2.6.0",
     "tape": "^4.8.0"
   },
   "devDependencies": {
@@ -12,6 +12,9 @@
   },
   "scripts": {
     "test": "standard"
+  },
+  "bin": {
+    "tapenet": "./bin.js"
   },
   "repository": {
     "type": "git",
