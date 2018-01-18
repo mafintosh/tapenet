@@ -93,7 +93,7 @@ tapenet comes bundles with some useful topologies.
 
 ``` js
 // same as h1.link(s1), h2.link(s1)
-var {h1, h2} = require('tapenet/topologies').basic()
+var {h1, h2} = test.topologies.basic()
 ```
 
 For more see [topologies/](https://github.com/mafintosh/tapenet/tree/master/topologies)

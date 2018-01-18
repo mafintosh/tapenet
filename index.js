@@ -15,6 +15,7 @@ tape.onFinish(function () {
 test.mininet = mn
 test.hosts = mn.hosts
 test.switches = mn.switches
+test.topologies = require('./topologies')(mn)
 
 test.createSwitch = function () {
   return mn.createSwitch()
@@ -47,7 +48,6 @@ function runner (t, fn) {
     } else {
       start()
     }
-
   } else {
     ready()
   }
