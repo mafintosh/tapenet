@@ -62,16 +62,19 @@ function runner (t, fn) {
     t.run = run
 
     var missing = pending.length
-    if (!missing) fn(t)
+    if (!missing) return fn(t)
 
     pending.forEach(function (proc) {
-      proc.on('close', function () {
+      if (proc.killed) return process.nextTick(onclose)
+      proc.on('close', onclose)
+      proc.kill()
+
+      function onclose () {
         if (!--missing) {
           pending = []
           fn(t)
         }
-      })
-      proc.kill()
+      }
     })
   }
 
@@ -130,6 +133,8 @@ function runner (t, fn) {
     proc.on('message:test', function (data) {
       t[data.name].apply(t, data.args)
     })
+
+    pending.push(proc)
 
     return proc
   }
