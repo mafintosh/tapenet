@@ -67,7 +67,7 @@ function runner (t, fn) {
     pending.forEach(function (proc) {
       if (proc.killed) return process.nextTick(onclose)
       proc.on('close', onclose)
-      proc.kill()
+      proc.kill('SIGINT')
 
       function onclose () {
         if (!--missing) {
