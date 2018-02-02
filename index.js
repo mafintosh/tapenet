@@ -107,7 +107,7 @@ function runner (t, fn) {
           get: function (target, name) {
             if (global.hasOwnProperty(name)) return global[name]
             if (target.hasOwnProperty(name)) return target[name]
-            if (!/^h\\d$/.test(name)) return
+            if (!/^h\\d+$/.test(name)) return
             var e = target[name] = createEmitter(name)
             return e
           }
